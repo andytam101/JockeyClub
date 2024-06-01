@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block header %}
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 border pt-3 mt-4 ps-4 pe-4 pb-3">
+            <form id="edit-form">
+                <div class="row">
+                    <div class="col-lg-1 pt-2">
+                        <label for="raceId">場次</label>
+                    </div>
+                    <div class="col-lg-11">
+                        <input class="form-control"  type="number" name="raceId" id="raceId" placeholder="請輸入場次">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-lg-1">
+                        <label for="highQuality">高質素</label>
+                    </div>
+                    <div class="col-lg-1">
+                        <input type="checkbox" name="highQuality">
+                    </div>
+                    <div class="col-lg-3 text-lg-end">
+                        <label for="fairness">公平/後上/快放</label>
+                    </div>
+                    <div class="col-lg-4">
+                        <select name="fairness" class="w-75" id="fairness">
+                            <option value="fair">公平</option>
+                            <option value="catch">後上</option>
+                            <option value="quick">快放</option>
+                        </select>  
+                    </div>
+                    <div class="col-lg-3 text-end">
+                        <input type="submit" value="提交" class="btn btn-primary w-100">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="../static/edit.js"></script>
+{% endblock %}
