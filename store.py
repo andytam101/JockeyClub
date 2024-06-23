@@ -61,10 +61,13 @@ def scrape_race(url: str) -> dict:
     return details
 
 
-def scrape_all(urls: [str]) -> [dict]:
+def scrape_all(urls: [str], lang=0) -> [dict]:
     result = []
     for (idx, url) in enumerate(urls):
-        print(f"Fetching race {idx + 1}...")
+        if lang == 0:
+            print(f"Fetching race {idx + 1}...")
+        else:
+            print(f"正在下載第 {idx + 1} 場資料...")
         result.append(scrape_race(url))
 
     return result
@@ -78,13 +81,16 @@ def generate_urls(date, location, total_count):
     return urls
 
 
-def scrape_all_on_date(date, location, total_count):
-    return scrape_all(generate_urls(date, location, total_count))
+def scrape_all_on_date(date, location, total_count, lang=0):
+    return scrape_all(generate_urls(date, location, total_count), lang)
 
 
-def add_all_data(data):
+def add_all_data(data, lang=0):
     for i, d in enumerate(data):
-        print(f"Storing race {i + 1}")
+        if lang == 0:
+            print(f"Storing race {i + 1}...")
+        else:
+            print(f"正在儲存第 {i+1} 場資料...")
         add_race(d["raceId"], d["distance"], d["url"], d["results"])
 
 
