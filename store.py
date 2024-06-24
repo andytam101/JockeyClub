@@ -109,8 +109,7 @@ def add_race(raceId, distance, url, horses):
         session.commit()
     except IntegrityError as e:
         session.rollback()
-        print("Integrity Error")
-        print(e)
+        print("Already exists in database")
     except Exception as e:
         session.rollback()
         raise e
