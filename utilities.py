@@ -27,7 +27,12 @@ def get_code_of_horse(name: str) -> str:
 
 def get_ranking(raceId: int, horse: str) -> int:
     session = get_session()
-    ans: int = session.query(Ran.ranking).filter(Ran.raceId == raceId).filter(Ran.horseId == horse).scalar()
+    ans: int = (
+        session.query(Ran.ranking)
+        .filter(Ran.raceId == raceId)
+        .filter(Ran.horseId == horse)
+        .scalar()
+    )
     session.close()
     return ans
 
@@ -77,6 +82,7 @@ def horse_exist(horseId):
     session = get_session()
     result = session.query(Horse).filter(Horse.id == horseId).first()
     session.close()
+    print(result.name)
     return result is not None
 
 

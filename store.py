@@ -116,8 +116,9 @@ def add_race(raceId, distance, url, horses):
 
 
 def add_horse(horseId, name):
-    session = get_session()
     if not horse_exist(horseId):
+        session = get_session()
         new_horse = Horse(id=horseId, name=name)
         session.add(new_horse)
-    session.close()
+        session.commit()
+        return
