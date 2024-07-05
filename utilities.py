@@ -3,6 +3,8 @@ from db import Ran, Horse, Race, get_session
 
 CURRENT_SEASON = 2024
 
+MAX_TRIES = 10
+
 
 def get_url(raceId: int) -> str:
     session = get_session()
@@ -82,7 +84,6 @@ def horse_exist(horseId):
     session = get_session()
     result = session.query(Horse).filter(Horse.id == horseId).first()
     session.close()
-    print(result.name)
     return result is not None
 
 

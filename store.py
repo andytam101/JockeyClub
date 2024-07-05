@@ -45,20 +45,24 @@ def parse_table(horses) -> [dict]:
 
 
 def scrape_race(url: str) -> dict:
-    driver = scrape(url)
+    for i in range(MAX_TRIES):
+        try:
+            driver = scrape(url)
 
-    tables = driver.find_elements(By.CSS_SELECTOR, 'table')
-    details = tables[1]
-    horses = tables[2]
+            tables = driver.find_elements(By.CSS_SELECTOR, 'table')
+            details = tables[1]
+            horses = tables[2]
 
-    result = parse_table(horses)
-    details = details_of_race(details)
+            result = parse_table(horses)
+            details = details_of_race(details)
 
-    driver.quit()
+            driver.quit()
 
-    details.update({"url": url})
-    details.update({"results": result})
-    return details
+            details.update({"url": url})
+            details.update({"results": result})
+            return details
+        except IndexError:
+            print("Failed, trying again automatically")
 
 
 def scrape_all(urls: [str], lang=0) -> [dict]:
