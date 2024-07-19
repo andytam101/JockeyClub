@@ -2,6 +2,9 @@ from sqlalchemy import create_engine, Column, Integer, String, Boolean, Enum
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import sessionmaker
 
+DB_PATH = "sqlite:///data.db"
+
+
 Base = declarative_base()
 
 
@@ -36,5 +39,5 @@ def get_session():
     return session()
 
 
-_engine = create_engine("sqlite:///data.db")
+_engine = create_engine(DB_PATH)
 Base.metadata.create_all(_engine)
